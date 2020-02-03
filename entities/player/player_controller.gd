@@ -99,8 +99,6 @@ func walk(delta: float) -> void:
 	if( ( abs(linearVel.x) + abs(linearVel.z) ) < 10):
 		add_central_force(moveForce)
 
-
-# TODO: Fix issue where camera can go upside-down if you move the mouse up or down too far
 func camera_rotation(delta: float) -> void:
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
@@ -114,6 +112,6 @@ func camera_rotation(delta: float) -> void:
 		
 		head.get_child(0).rotate_x(deg2rad(mouse_y))
 		
-		var temp_rot: Vector3 = head.rotation_degrees
+		var temp_rot: Vector3 = head.get_child(0).rotation_degrees
 		temp_rot.x = clamp(temp_rot.x, -90, 90)
-		head.rotation_degrees = temp_rot
+		head.get_child(0).rotation_degrees = temp_rot

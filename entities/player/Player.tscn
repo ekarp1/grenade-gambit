@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://entities/player/player_controller.gd" type="Script" id=1]
+[ext_resource path="res://gun.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://entities/player/MeshInstance.gd" type="Script" id=3]
+[ext_resource path="res://crosshair.png" type="Texture" id=4]
+[ext_resource path="res://entities/player/crosshair.gd" type="Script" id=5]
+
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.6
+height = 1.5
+
+[node name="Player" type="RigidBody" groups=[
+"Player",
+]]
+collision_layer = 2
+collision_mask = 3
+gravity_scale = 2.0
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource( 1 )
+head_path = NodePath("Head")
+cam_path = NodePath("Head/Camera")
+
+[node name="Collision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+fov = 80.0
+far = 250.0
+
+[node name="MeshInstance" type="MeshInstance" parent="Head/Camera"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.576526, -0.71115, -0.975146 )
+mesh = ExtResource( 2 )
+material/0 = null
+script = ExtResource( 3 )
+
+[node name="crosshair" type="Sprite" parent="Head/Camera"]
+position = Vector2( 453, 279 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )

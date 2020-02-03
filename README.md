@@ -3,6 +3,7 @@ This is a github repository for a game called "Grenade Gambit" that's currently 
 The game is based off of the concept of "Rocket Jumping"
 
 Press Shift+F1 in order to toggle mouse capture
+
 Press Escape in order to close window
 
 ## Setup
